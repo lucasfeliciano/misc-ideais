@@ -10,14 +10,24 @@ Accounts.onCreateUser(function(options, user){
   }
   user = _.extend(user, userProperties);
 
-  if (options.email)
-    user.profile.email = options.email;
-    
-  if (getEmail(user))
+  if (getSignupMethod(user) === 'google'){
+    console.log("Entroi if google ");
+    user.profile.email = getGoogleEmail(user);
+  }else{
+    user.profile.email = getEmail(user);
+  }
+
+  if (getEmailDomain(user) !== "ideais.com.br") {
+    throw new Meteor.Error(403, "Você precisa ter uma conta da Ideais para se registrar.");
+  }
+
+  if (getEmail(user)){
     user.email_hash = getEmailHash(user);
+  }
   
-  if (!user.profile.name)
+  if (!user.profile.name){
     user.profile.name = user.username;
+  }
   
   // set notifications default preferences
   user.profile.notifications = {
@@ -28,7 +38,7 @@ Accounts.onCreateUser(function(options, user){
   }
 
   // create slug from username
-  user.slug = slugify(getUserName(user));
+  user.slug = getUserName(user);
 
   // if this is the first user ever, make them an admin
   if (!Meteor.users.find().count() )

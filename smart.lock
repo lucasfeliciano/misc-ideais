@@ -2,15 +2,25 @@
   "meteor": {},
   "dependencies": {
     "basePackages": {
-      "momentjs": {},
-      "crypto-base": {},
+      "momentjs": {
+        "version": "2.1.0.2"
+      },
+      "crypto-base": {
+        "version": "3.1.2.1"
+      },
       "database-forms": {
         "git": "git://github.com/SachaG/database-forms.git",
         "branch": "master"
       },
-      "crypto-md5": {},
-      "iron-router": {},
-      "nprogress": {}
+      "crypto-md5": {
+        "version": "3.1.2.2"
+      },
+      "iron-router": {
+        "version": "0.6.1"
+      },
+      "nprogress": {
+        "version": "0.0.3"
+      }
     },
     "packages": {
       "momentjs": {
