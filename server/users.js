@@ -11,7 +11,6 @@ Accounts.onCreateUser(function(options, user){
   user = _.extend(user, userProperties);
 
   if (getSignupMethod(user) === 'google'){
-    console.log("Entroi if google ");
     user.profile.email = getGoogleEmail(user);
   }else{
     user.profile.email = getEmail(user);
